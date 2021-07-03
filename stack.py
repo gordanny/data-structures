@@ -1,4 +1,5 @@
 from collections import deque
+from queue import LifoQueue
 
 
 class ListStack:
@@ -8,8 +9,8 @@ class ListStack:
     def is_empty(self):
         return not len(self.stack)
 
-    def push(self, element):
-        self.stack.append(element)
+    def push(self, item):
+        self.stack.append(item)
 
     def pop(self):
         return self.stack.pop()
@@ -25,11 +26,30 @@ class DequeStack:
     def is_empty(self):
         return not len(self.stack)
 
-    def push(self, element):
-        self.stack.append(element)
+    def push(self, item):
+        self.stack.append(item)
 
     def pop(self):
         return self.stack.pop()
 
     def top(self):
         return self.stack[-1]
+
+
+class LifoQueueStack:
+    def __init__(self):
+        self.stack = LifoQueue()
+
+    def is_empty(self):
+        return self.stack.empty()
+
+    def push(self, item):
+        self.stack.put_nowait(item)
+
+    def pop(self):
+        return self.stack.get_nowait()
+
+    def top(self):
+        top_item = self.stack.get_nowait()
+        self.stack.put_nowait(top_item)
+        return top_item
