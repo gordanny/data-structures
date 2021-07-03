@@ -44,12 +44,12 @@ class LifoQueueStack:
         return self.stack.empty()
 
     def push(self, item):
-        self.stack.put_nowait(item)
+        self.stack.put(item)
 
     def pop(self):
-        return self.stack.get_nowait()
+        return self.stack.get()
 
     def top(self):
-        top_item = self.stack.get_nowait()
-        self.stack.put_nowait(top_item)
+        top_item = self.stack.get()
+        self.stack.put(top_item)
         return top_item

@@ -39,10 +39,10 @@ class QueueQueue:
         return self.queue.empty()
 
     def push(self, item):
-        self.queue.put_nowait(item)
+        self.queue.put(item)
 
     def pop(self):
-        return self.queue.get_nowait()
+        return self.queue.get()
 
 
 class MultiprocessingQueueQueue:
@@ -57,4 +57,3 @@ class MultiprocessingQueueQueue:
 
     def pop(self):
         return self.queue.get()
-
