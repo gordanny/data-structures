@@ -1,5 +1,6 @@
 from collections import deque
 from queue import Queue
+from multiprocessing import Queue as MultiprocessingQueue
 
 
 class ListQueue:
@@ -42,3 +43,18 @@ class QueueQueue:
 
     def pop(self):
         return self.queue.get_nowait()
+
+
+class MultiprocessingQueueQueue:
+    def __init__(self):
+        self.queue = MultiprocessingQueue()
+
+    def is_empty(self):
+        return self.queue.empty()
+
+    def push(self, item):
+        self.queue.put(item)
+
+    def pop(self):
+        return self.queue.get()
+
