@@ -1,4 +1,5 @@
 from collections import deque
+from queue import Queue
 
 
 class ListQueue:
@@ -27,3 +28,17 @@ class DequeQueue:
 
     def pop(self):
         return self.queue.popleft()
+
+
+class QueueQueue:
+    def __init__(self):
+        self.queue = Queue()
+
+    def is_empty(self):
+        return self.queue.empty()
+
+    def push(self, item):
+        self.queue.put_nowait(item)
+
+    def pop(self):
+        return self.queue.get_nowait()
